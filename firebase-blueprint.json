@@ -1,0 +1,82 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User account and preferences",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "createdAt": { "type": "number" },
+        "lastActiveAt": { "type": "number" }
+      },
+      "required": ["userId"]
+    },
+    "ChallengeSettings": {
+      "title": "ChallengeSettings",
+      "description": "User challenge configuration",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "startDate": { "type": "string" },
+        "currencySymbol": { "type": "string" },
+        "currencyCode": { "type": "string" },
+        "targetClients": { "type": "number" },
+        "targetRevenue": { "type": "number" },
+        "targetDailyPitches": { "type": "number" },
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "color": { "type": "string" }
+            }
+          }
+        },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["userId", "startDate"]
+    },
+    "DailyEntry": {
+      "title": "DailyEntry",
+      "description": "Single day outreach metrics entry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "date": { "type": "string" },
+        "pitches": { "type": "number" },
+        "responses": { "type": "number" },
+        "positiveResponses": { "type": "number" },
+        "meetings": { "type": "number" },
+        "proposals": { "type": "number" },
+        "clientsClosed": { "type": "number" },
+        "revenue": { "type": "number" },
+        "channels": { "type": "array", "items": { "type": "string" } },
+        "notes": { "type": "string" },
+        "isRestDay": { "type": "boolean" },
+        "followUps": { "type": "array" },
+        "createdAt": { "type": "number" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["id", "userId", "date"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Public or private profile of user"
+    },
+    "/users/{userId}/settings/challenge": {
+      "schema": "ChallengeSettings",
+      "description": "User challenge settings"
+    },
+    "/users/{userId}/entries/{entryId}": {
+      "schema": "DailyEntry",
+      "description": "Daily logged outreach entry"
+    }
+  }
+}

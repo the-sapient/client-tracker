@@ -1,0 +1,6 @@
+{
+  "name": "100-Day Client Acquisition Tracker",
+  "description": "An interactive accountability dashboard to track daily outreach pitches, responses, meetings, closed clients, revenue, streaks, and funnel analytics over a 100-day client acquisition challenge.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
